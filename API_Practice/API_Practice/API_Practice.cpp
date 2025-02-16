@@ -1,15 +1,17 @@
 // API_Practice.cpp : Defines the entry point for the application.
 //
 
+#include  "pch.h"
 #include "framework.h"
 #include "API_Practice.h"
+#include "Game.h"
 
 #define MAX_LOADSTRING 100
 
 // Global Variables:
 HINSTANCE hInst;                                // current instance
-WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
-WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
+HWND g_hwnd;
+
 
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -23,11 +25,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ int       nCmdShow)
 {
     
-    // TODO: Place code here.
+  
 
-    // Initialize global strings
-   /* LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-    LoadStringW(hInstance, IDC_APIPRACTICE, szWindowClass, MAX_LOADSTRING);*/
 
     // 중요 1) 윈도우 창 정보 등록
     MyRegisterClass(hInstance);
@@ -39,15 +38,36 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
+    Game game;
+    game.Init(g_hwnd);
 
-    MSG msg;
+    MSG msg = {};
+    uint64 prevTick = 0;
 
     //중요 3) 메인 루프
     // Main message loop:
-    while (::GetMessage(&msg, nullptr, 0, 0))
+    while (msg.message != WM_QUIT)
     {
-            ::TranslateMessage(&msg);
-            ::DispatchMessage(&msg);
+			//GetMessage와 같은 동장
+			if(::PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+			{
+	            ::TranslateMessage(&msg);
+	            ::DispatchMessage(&msg);
+				
+			}
+			else
+			{
+				uint64 now = ::GetTickCount64();
+
+                if(now - prevTick >= 10)
+                {
+					//게임 루프
+	                game.Update();
+	                game.Render();
+
+                    prevTick = now;
+                }
+			}
     }
 
     return (int) msg.wParam;
@@ -101,6 +121,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    // MyRegisterClass에 있는 정보를 토대로 창 생성
    HWND hWnd = CreateWindowW(L"API_Practice", L"Client", WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, nullptr, nullptr, hInstance, nullptr);
+
+    g_hwnd = hWnd;
 
    if (!hWnd)
    {
