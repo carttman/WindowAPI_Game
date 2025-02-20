@@ -1,5 +1,4 @@
 #pragma once
-
 enum class KeyType
 {
 	LeftMouse = VK_LBUTTON,

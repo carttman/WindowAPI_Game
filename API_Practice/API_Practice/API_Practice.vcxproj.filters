@@ -21,6 +21,12 @@
     <Filter Include="Source Files\99.Headers\Andromeda">
       <UniqueIdentifier>{39ca093d-ac10-4cfd-92fc-2ce29943dd61}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\02.Scene">
+      <UniqueIdentifier>{debfebab-ab22-4fa5-93e5-579b28577ae1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\02.Scene\Game">
+      <UniqueIdentifier>{5898d017-ec7e-4be8-83c3-c133d4aa626a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="API_Practice.h">
@@ -56,6 +62,21 @@
     <ClInclude Include="TimeManager.h">
       <Filter>Source Files\01.Manager</Filter>
     </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Source Files\01.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Source Files\02.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Source Files\99.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DevScene.h">
+      <Filter>Source Files\02.Scene\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Source Files\02.Scene\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="API_Practice.rc">
@@ -85,6 +106,21 @@
     </ClCompile>
     <ClCompile Include="TimeManager.cpp">
       <Filter>Source Files\01.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Source Files\01.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files\02.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Source Files\99.Headers</Filter>
+    </ClCompile>
+    <ClCompile Include="DevScene.cpp">
+      <Filter>Source Files\02.Scene\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Source Files\02.Scene\Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
